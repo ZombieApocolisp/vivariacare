@@ -6,6 +6,9 @@ export type StatusSnapshot = {
 
   // Actuators (controls)
   pumpOn: boolean;
+  valveLeftOpen: boolean;
+  valveRightOpen: boolean;
+  lightsOn: boolean;
 
   // Timestamp (millisecond since epoch)
   updatedAt: number;

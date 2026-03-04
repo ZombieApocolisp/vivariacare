@@ -1,16 +1,27 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../src/state/hooks";
-import { togglePump } from "../../src/state/terrariumSlice";
+import {
+  toggleLights,
+  togglePump,
+  toggleValveLeft,
+  toggleValveRight,
+} from "../../src/state/terrariumSlice";
 
 export default function ControlsScreen() {
   const dispatch = useAppDispatch();
   const pumpOn = useAppSelector((state) => state.terrarium.status.pumpOn);
+  const valveLeft = useAppSelector(
+    (state) => state.terrarium.status.valveLeftOpen,
+  );
+  const valveRight = useAppSelector(
+    (state) => state.terrarium.status.valveRightOpen,
+  );
+  const lightsOn = useAppSelector((state) => state.terrarium.status.lightsOn);
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Controls</Text>
-
       <View style={styles.card}>
         <Text style={styles.label}>Pump</Text>
         <Text style={styles.value}>{pumpOn ? "ON" : "OFF"}</Text>
@@ -25,6 +36,57 @@ export default function ControlsScreen() {
         >
           <Text style={styles.buttonText}>
             {pumpOn ? "Turn Pump OFF" : "Turn Pump ON"}
+          </Text>
+        </Pressable>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.label}>Left Valve</Text>
+        <Text style={styles.value}>{valveLeft ? "OPEN" : "CLOSED"}</Text>
+
+        <Pressable
+          onPress={() => dispatch(toggleValveLeft())}
+          style={({ pressed }) => [
+            styles.button,
+            valveLeft ? styles.buttonOn : styles.buttonOff,
+            pressed && styles.buttonPressed,
+          ]}
+        >
+          <Text style={styles.buttonText}>
+            {valveLeft ? "Close Valve" : "Open Valve"}
+          </Text>
+        </Pressable>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.label}>Right Valve</Text>
+        <Text style={styles.value}>{valveRight ? "OPEN" : "CLOSED"}</Text>
+
+        <Pressable
+          onPress={() => dispatch(toggleValveRight())}
+          style={({ pressed }) => [
+            styles.button,
+            valveRight ? styles.buttonOn : styles.buttonOff,
+            pressed && styles.buttonPressed,
+          ]}
+        >
+          <Text style={styles.buttonText}>
+            {valveRight ? "Close Valve" : "Open Valve"}
+          </Text>
+        </Pressable>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.label}>Lights</Text>
+        <Text style={styles.value}>{lightsOn ? "ON" : "OFF"}</Text>
+
+        <Pressable
+          onPress={() => dispatch(toggleLights())}
+          style={({ pressed }) => [
+            styles.button,
+            lightsOn ? styles.buttonOn : styles.buttonOff,
+            pressed && styles.buttonPressed,
+          ]}
+        >
+          <Text style={styles.buttonText}>
+            {lightsOn ? "Turn Lights OFF" : "Turn Lights ON"}
           </Text>
         </Pressable>
       </View>

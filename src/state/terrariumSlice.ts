@@ -12,6 +12,9 @@ const initialState: TerrariumState = {
     substrateMoisturePct: 38,
     reservoirPct: 64,
     pumpOn: false,
+    valveLeftOpen: false,
+    valveRightOpen: false,
+    lightsOn: false,
     updatedAt: Date.now(),
   },
 };
@@ -27,8 +30,23 @@ const terrariumSlice = createSlice({
       state.status.pumpOn = !state.status.pumpOn;
       state.status.updatedAt = Date.now();
     },
+    toggleValveLeft(state) {
+      state.status.valveLeftOpen = !state.status.valveLeftOpen;
+    },
+    toggleValveRight(state) {
+      state.status.valveRightOpen = !state.status.valveRightOpen;
+    },
+    toggleLights(state) {
+      state.status.lightsOn = !state.status.lightsOn;
+    },
   },
 });
 
-export const { setStatus, togglePump } = terrariumSlice.actions;
+export const {
+  setStatus,
+  togglePump,
+  toggleValveLeft,
+  toggleValveRight,
+  toggleLights,
+} = terrariumSlice.actions;
 export default terrariumSlice.reducer;
