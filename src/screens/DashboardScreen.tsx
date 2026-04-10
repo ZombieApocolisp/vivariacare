@@ -1,92 +1,31 @@
-import React, { memo, useCallback, useMemo } from "react";
+import { useDashboardData } from "@/features/terrarium/hooks/useDashboardData";
+import { useQuickControls } from "@/features/terrarium/hooks/useQuickControls";
+import { AppText } from "@components/ui/AppText";
+import { Card } from "@components/ui/Card";
+import { Pill } from "@components/ui/Pill";
+import { Screen } from "@components/ui/Screen";
+import { ToggleButton } from "@components/ui/ToggleButton";
+import { useTheme } from "@theme/useTheme";
+import React from "react";
 import { StyleSheet, View } from "react-native";
-import { AppText } from "../components/ui/AppText";
-import { Card } from "../components/ui/Card";
-import { Pill } from "../components/ui/Pill";
-import { Screen } from "../components/ui/Screen";
-import { ToggleButton } from "../components/ui/ToggleButton";
-import { useTheme } from "../theme/useTheme";
-
-// If you already have Redux hooks like useAppSelector/useAppDispatch, use them here.
-import { useAppDispatch, useAppSelector } from "../state/hooks";
-import {
-  toggleLights,
-  togglePump,
-  toggleValveLeft,
-  toggleValveRight,
-} from "../state/terrariumSlice";
-
-type SensorTileProps = {
-  label: string;
-  value: string;
-  hint?: string;
-};
-
-const SensorTile = memo(function SensorTile({
-  label,
-  value,
-  hint,
-}: SensorTileProps) {
-  const t = useTheme();
-  const s = sensorStyles(t);
-
-  return (
-    <View style={s.tile}>
-      <AppText variant="muted" weight="semibold">
-        {label}
-      </AppText>
-      <AppText weight="bold" style={s.value}>
-        {value}
-      </AppText>
-      {!!hint && <AppText variant="muted">{hint}</AppText>}
-    </View>
-  );
-});
 
 export default function DashboardScreen() {
   const t = useTheme();
   const s = styles(t);
 
-  // Replace these with real state later (kept inline for starter simplicity)
+  // Replace systemOk with a real state object later
   const systemOk = true;
-
-  const dispatch = useAppDispatch();
-  const pumpOn = useAppSelector((state) => state.terrarium.status.pumpOn);
-  const lightsOn = useAppSelector((state) => state.terrarium.status.lightsOn);
-  const leftValveOpen = useAppSelector(
-    (state) => state.terrarium.status.valveLeftOpen,
-  );
-  const rightValveOpen = useAppSelector(
-    (state) => state.terrarium.status.valveRightOpen,
-  );
-
   const statusTone = systemOk ? "ok" : "warn";
 
-  const onTogglePump = useCallback(() => {
-    dispatch(togglePump());
-  }, []);
+  const { pumpOn, lightsOn, leftValveOpen, rightValveOpen, sensorSnapshot } =
+    useDashboardData();
 
-  const onToggleLights = useCallback(() => {
-    dispatch(toggleLights());
-  }, []);
-
-  const onToggleLeftValve = useCallback(() => {
-    dispatch(toggleValveLeft());
-  }, []);
-
-  const onToggleRightValve = useCallback(() => {
-    dispatch(toggleValveRight());
-  }, []);
-
-  const sensorSnapshot = useMemo(
-    () => [
-      { label: "Temp", value: "78.4°F", hint: "Target 75-82" },
-      { label: "Humidity", value: "86%", hint: "Target 80-95" },
-      { label: "VPD", value: "0.55", hint: "kPa" },
-      { label: "Substrate", value: "Moist", hint: "OK" },
-    ],
-    [],
-  );
+  const {
+    onTogglePump,
+    onToggleLights,
+    onToggleLeftValve,
+    onToggleRightValve,
+  } = useQuickControls();
 
   return (
     <Screen scrollable>
@@ -124,29 +63,13 @@ export default function DashboardScreen() {
             <AppText variant="muted">Updated just now</AppText>
           </View>
         </View>
-
-        <View style={s.divider} />
-
-        <View style={s.metricsRow}>
-          <View style={s.metric}>
-            <AppText variant="muted">Mist Zones</AppText>
-            <AppText weight="bold">2</AppText>
-          </View>
-          <View style={s.metric}>
-            <AppText variant="muted">Pump</AppText>
-            <AppText weight="bold">{pumpOn ? "ON" : "OFF"}</AppText>
-          </View>
-          <View style={s.metric}>
-            <AppText variant="muted">Lights</AppText>
-            <AppText weight="bold">{lightsOn ? "ON" : "OFF"}</AppText>
-          </View>
-        </View>
       </Card>
 
+      <View style={s.divider} />
+
       {/* Quick Controls */}
-      <AppText weight="semibold" style={{ marginTop: t.spacing.xl }}>
-        Quick Controls
-      </AppText>
+      <AppText weight="semibold">Quick Controls</AppText>
+
       <View style={s.controlsRow}>
         <ToggleButton label="Pump" value={pumpOn} onToggle={onTogglePump} />
         <View style={{ width: t.spacing.md }} />
@@ -156,6 +79,7 @@ export default function DashboardScreen() {
           onToggle={onToggleLights}
         />
       </View>
+
       <View style={s.controlsRow}>
         <ToggleButton
           label="Left Valve"
@@ -170,19 +94,17 @@ export default function DashboardScreen() {
         />
       </View>
 
-      {/* Sensor Snapshot */}
-      <AppText weight="semibold" style={{ marginTop: t.spacing.xl }}>
-        Sensor Snapshot
-      </AppText>
-      <Card style={{ marginTop: t.spacing.md }}>
+      <Card style={{ marginTop: t.spacing.lg }}>
+        <AppText weight="semibold">Sensor Snapshot</AppText>
         <View style={s.grid}>
           {sensorSnapshot.map((x) => (
-            <SensorTile
-              key={x.label}
-              label={x.label}
-              value={x.value}
-              hint={x.hint}
-            />
+            <View key={x.label} style={s.tile}>
+              <AppText variant="muted">{x.label}</AppText>
+              <AppText weight="bold" style={s.value}>
+                {x.value}
+              </AppText>
+              <AppText variant="muted">{x.hint}</AppText>
+            </View>
           ))}
         </View>
       </Card>
@@ -207,19 +129,6 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       backgroundColor: t.colors.border,
       marginVertical: t.spacing.lg,
     },
-    metricsRow: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      gap: t.spacing.md,
-    },
-    metric: {
-      flex: 1,
-      padding: t.spacing.md,
-      borderRadius: t.radius.lg,
-      backgroundColor: "rgba(255,255,255,0.03)",
-      borderWidth: 1,
-      borderColor: t.colors.border,
-    },
     controlsRow: {
       flexDirection: "row",
       marginTop: t.spacing.md,
@@ -228,17 +137,14 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       flexDirection: "row",
       flexWrap: "wrap",
       gap: t.spacing.md,
+      marginTop: t.spacing.md,
     },
-  });
-
-const sensorStyles = (t: ReturnType<typeof useTheme>) =>
-  StyleSheet.create({
     tile: {
-      flexBasis: "47%",
+      flexBasis: "48%",
       flexGrow: 1,
       padding: t.spacing.md,
       borderRadius: t.radius.lg,
-      backgroundColor: "rgba(0,0,0,0.18)",
+      backgroundColor: "rgba(0,0,0,0.03)",
       borderWidth: 1,
       borderColor: t.colors.border,
     },

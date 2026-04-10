@@ -1,7 +1,7 @@
+import { AppText } from "@components/ui/AppText";
+import { useTheme } from "@theme/useTheme";
 import React, { memo, useCallback } from "react";
 import { Pressable, StyleSheet, ViewStyle } from "react-native";
-import { useTheme } from "../../theme/useTheme";
-import { AppText } from "./AppText";
 
 type Props = {
   label: string;

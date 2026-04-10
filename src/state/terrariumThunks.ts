@@ -1,6 +1,6 @@
-import type { StatusSnapshot } from "../types/terrarium";
-import { AppDispatch } from "./store";
-import { setStatus } from "./terrariumSlice";
+import type { StatusSnapshot } from "@/types/terrarium";
+import { AppDispatch } from "@state/store";
+import { setStatus } from "@state/terrariumSlice";
 
 export const startMockPolling = () => (dispatch: AppDispatch) => {
   setInterval(() => {

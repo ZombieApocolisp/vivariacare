@@ -1,6 +1,6 @@
+import { useTheme } from "@theme/useTheme";
 import React from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { useTheme } from "../../theme/useTheme";
 
 type Props = ViewProps & {
   glow?: "cyan" | "lime" | "violet" | "amber" | "none";

@@ -1,7 +1,7 @@
+import { AppText } from "@components/ui/AppText";
+import { useTheme } from "@theme/useTheme";
 import React from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
-import { useTheme } from "../../theme/useTheme";
-import { AppText } from "./AppText";
 
 type Props = ViewProps & {
   label: string;

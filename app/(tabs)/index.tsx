@@ -1,7 +1,7 @@
-import { startMockPolling } from "@/src/state/terrariumThunks";
+import DashboardScreen from "@screens/DashboardScreen";
+import { useAppDispatch, useAppSelector } from "@state/hooks";
+import { startMockPolling } from "@state/terrariumThunks";
 import React, { useEffect } from "react";
-import DashboardScreen from "../../src/screens/DashboardScreen";
-import { useAppDispatch, useAppSelector } from "../../src/state/hooks";
 
 export default function DashboardRoute() {
   const dispatch = useAppDispatch();

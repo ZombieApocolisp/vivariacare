@@ -1,12 +1,12 @@
-import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { useAppDispatch, useAppSelector } from "../../src/state/hooks";
+import { useAppDispatch, useAppSelector } from "@state/hooks";
 import {
   toggleLights,
   togglePump,
   toggleValveLeft,
   toggleValveRight,
-} from "../../src/state/terrariumSlice";
+} from "@state/terrariumSlice";
+import React from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function ControlsScreen() {
   const dispatch = useAppDispatch();

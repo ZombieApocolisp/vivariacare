@@ -1,7 +1,7 @@
+import { useTheme } from "@theme/useTheme";
 import React from "react";
 import { ScrollView, StyleSheet, View, ViewProps } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme } from "../../theme/useTheme";
 
 type Props = ViewProps & {
   padded?: boolean;
@@ -20,7 +20,7 @@ export function Screen({
 
   if (scrollable) {
     return (
-      <SafeAreaView style={s.safe}>
+      <SafeAreaView style={s.safe} edges={["left", "right"]}>
         <ScrollView
           style={s.root}
           contentContainerStyle={[padded && s.padded, s.scrollContent, style]}
@@ -56,6 +56,7 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       padding: t.spacing.xl,
     },
     scrollContent: {
+      paddingTop: t.spacing.xxl,
       paddingBottom: t.spacing.xxl,
     },
   });

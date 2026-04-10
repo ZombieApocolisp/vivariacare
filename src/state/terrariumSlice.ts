@@ -1,5 +1,5 @@
+import type { StatusSnapshot } from "@/types/terrarium";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { StatusSnapshot } from "../types/terrarium";
 
 type TerrariumState = {
   status: StatusSnapshot;

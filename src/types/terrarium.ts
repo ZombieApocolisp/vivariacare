@@ -1,4 +1,5 @@
 export type StatusSnapshot = {
+  // Sensor Data
   temperatureF: number;
   humidityPct: number;
   substrateMoisturePct: number;

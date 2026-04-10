@@ -1,9 +1,9 @@
-import { colors } from "./colors";
-import { radius } from "./radius";
-import { spacing } from "./spacing";
-import { typography } from "./typography";
+import { colors } from "@theme/colors";
+import { radius } from "@theme/radius";
+import { spacing } from "@theme/spacing";
+import { typography } from "@theme/typography";
 
-export type AppTheme = {
+type AppTheme = {
   colors: typeof colors;
   spacing: typeof spacing;
   radius: typeof radius;

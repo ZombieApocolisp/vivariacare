@@ -1,6 +1,6 @@
+import { useTheme } from "@theme/useTheme";
 import React from "react";
 import { StyleSheet, Text, TextProps } from "react-native";
-import { useTheme } from "../../theme/useTheme";
 
 type Props = TextProps & {
   variant?: "title" | "subtitle" | "body" | "muted" | "mono";
