@@ -1,9 +1,9 @@
 import { useAppDispatch } from "@state/hooks";
 import {
+  toggleLeftValve,
   toggleLights,
   togglePump,
-  toggleValveLeft,
-  toggleValveRight,
+  toggleRightValve,
 } from "@state/terrariumSlice";
 import { useCallback } from "react";
 
@@ -19,11 +19,11 @@ export function useQuickControls() {
   }, [dispatch]);
 
   const onToggleLeftValve = useCallback(() => {
-    dispatch(toggleValveLeft());
+    dispatch(toggleLeftValve());
   }, [dispatch]);
 
   const onToggleRightValve = useCallback(() => {
-    dispatch(toggleValveRight());
+    dispatch(toggleRightValve());
   }, [dispatch]);
 
   return {

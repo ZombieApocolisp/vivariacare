@@ -4,7 +4,7 @@ import {
   selectLightsOn,
   selectPumpOn,
   selectRightValveOpen,
-  selectSensorSnapshot,
+  selectTerrariumStatusSnapshot,
 } from "../selectors";
 
 export function useDashboardData() {
@@ -12,13 +12,13 @@ export function useDashboardData() {
   const lightsOn = useAppSelector(selectLightsOn);
   const leftValveOpen = useAppSelector(selectLeftValveOpen);
   const rightValveOpen = useAppSelector(selectRightValveOpen);
-  const sensorSnapshot = useAppSelector(selectSensorSnapshot);
+  const terrariumStatusSnapshot = useAppSelector(selectTerrariumStatusSnapshot);
 
   return {
     pumpOn,
     lightsOn,
     leftValveOpen,
     rightValveOpen,
-    sensorSnapshot,
+    terrariumStatusSnapshot,
   };
 }

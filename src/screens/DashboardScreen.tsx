@@ -17,8 +17,13 @@ export default function DashboardScreen() {
   const systemOk = true;
   const statusTone = systemOk ? "ok" : "warn";
 
-  const { pumpOn, lightsOn, leftValveOpen, rightValveOpen, sensorSnapshot } =
-    useDashboardData();
+  const {
+    pumpOn,
+    lightsOn,
+    leftValveOpen,
+    rightValveOpen,
+    terrariumStatusSnapshot,
+  } = useDashboardData();
 
   const {
     onTogglePump,
@@ -35,9 +40,7 @@ export default function DashboardScreen() {
           <AppText variant="title" weight="bold">
             Dashboard
           </AppText>
-          <AppText variant="subtitle">
-            Terrarium overview & quick controls
-          </AppText>
+          <AppText variant="subtitle">Terrarium overview</AppText>
         </View>
         <Pill
           label={systemOk ? "SYSTEM OK" : "ATTENTION"}
@@ -97,7 +100,7 @@ export default function DashboardScreen() {
       <Card style={{ marginTop: t.spacing.lg }}>
         <AppText weight="semibold">Sensor Snapshot</AppText>
         <View style={s.grid}>
-          {sensorSnapshot.map((x) => (
+          {terrariumStatusSnapshot.map((x) => (
             <View key={x.label} style={s.tile}>
               <AppText variant="muted">{x.label}</AppText>
               <AppText weight="bold" style={s.value}>

@@ -1,23 +1,24 @@
 import { useAppDispatch, useAppSelector } from "@state/hooks";
 import {
+  toggleLeftValve,
   toggleLights,
   togglePump,
-  toggleValveLeft,
-  toggleValveRight,
+  toggleRightValve,
 } from "@state/terrariumSlice";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function ControlsScreen() {
   const dispatch = useAppDispatch();
-  const pumpOn = useAppSelector((state) => state.terrarium.status.pumpOn);
+
+  const pumpOn = useAppSelector((state) => state.terrarium.controls.pumpOn);
   const valveLeft = useAppSelector(
-    (state) => state.terrarium.status.valveLeftOpen,
+    (state) => state.terrarium.controls.leftValveOpen,
   );
   const valveRight = useAppSelector(
-    (state) => state.terrarium.status.valveRightOpen,
+    (state) => state.terrarium.controls.rightValveOpen,
   );
-  const lightsOn = useAppSelector((state) => state.terrarium.status.lightsOn);
+  const lightsOn = useAppSelector((state) => state.terrarium.controls.lightsOn);
 
   return (
     <View style={styles.container}>
@@ -44,7 +45,7 @@ export default function ControlsScreen() {
         <Text style={styles.value}>{valveLeft ? "OPEN" : "CLOSED"}</Text>
 
         <Pressable
-          onPress={() => dispatch(toggleValveLeft())}
+          onPress={() => dispatch(toggleLeftValve())}
           style={({ pressed }) => [
             styles.button,
             valveLeft ? styles.buttonOn : styles.buttonOff,
@@ -61,7 +62,7 @@ export default function ControlsScreen() {
         <Text style={styles.value}>{valveRight ? "OPEN" : "CLOSED"}</Text>
 
         <Pressable
-          onPress={() => dispatch(toggleValveRight())}
+          onPress={() => dispatch(toggleRightValve())}
           style={({ pressed }) => [
             styles.button,
             valveRight ? styles.buttonOn : styles.buttonOff,
