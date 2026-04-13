@@ -1,10 +1,16 @@
-import { useDashboardData } from "@/features/terrarium/hooks/useDashboardData";
-import { useQuickControls } from "@/features/terrarium/hooks/useQuickControls";
 import { AppText } from "@components/ui/AppText";
 import { Card } from "@components/ui/Card";
+import { ControlStatusCard } from "@components/ui/ControlStatusCard";
 import { Pill } from "@components/ui/Pill";
 import { Screen } from "@components/ui/Screen";
-import { ToggleButton } from "@components/ui/ToggleButton";
+import {
+  selectLeftValveOpen,
+  selectLightsOn,
+  selectPumpOn,
+  selectRightValveOpen,
+  selectStatusTiles,
+} from "@features/terrarium/selectors";
+import { useAppSelector } from "@state/hooks";
 import { useTheme } from "@theme/useTheme";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -17,20 +23,12 @@ export default function DashboardScreen() {
   const systemOk = true;
   const statusTone = systemOk ? "ok" : "warn";
 
-  const {
-    pumpOn,
-    lightsOn,
-    leftValveOpen,
-    rightValveOpen,
-    terrariumStatusSnapshot,
-  } = useDashboardData();
+  const statusTiles = useAppSelector(selectStatusTiles);
 
-  const {
-    onTogglePump,
-    onToggleLights,
-    onToggleLeftValve,
-    onToggleRightValve,
-  } = useQuickControls();
+  const pumpOn = useAppSelector(selectPumpOn);
+  const lightsOn = useAppSelector(selectLightsOn);
+  const leftValveOpen = useAppSelector(selectLeftValveOpen);
+  const rightValveOpen = useAppSelector(selectRightValveOpen);
 
   return (
     <Screen scrollable>
@@ -42,6 +40,7 @@ export default function DashboardScreen() {
           </AppText>
           <AppText variant="subtitle">Terrarium overview</AppText>
         </View>
+
         <Pill
           label={systemOk ? "SYSTEM OK" : "ATTENTION"}
           tone={statusTone}
@@ -49,16 +48,17 @@ export default function DashboardScreen() {
         />
       </View>
 
-      {/* Status Card */}
+      {/* Terrarium Status Card */}
       <Card
         glow={systemOk ? "cyan" : "amber"}
-        style={{ marginTop: t.spacing.lg }}
+        style={{ marginTop: t.spacing.xxl }}
       >
         <View style={s.cardTopRow}>
           <View style={{ flex: 1 }}>
             <AppText weight="semibold">Current Mode</AppText>
             <AppText variant="muted">Auto (schedule + sensors)</AppText>
           </View>
+
           <View style={{ alignItems: "flex-end" }}>
             <AppText weight="bold">
               {systemOk ? "Stable" : "Needs Review"}
@@ -68,49 +68,42 @@ export default function DashboardScreen() {
         </View>
       </Card>
 
-      <View style={s.divider} />
+      {/* Sensor Metrics Snapshot */}
+      <Card
+        glow={systemOk ? "cyan" : "amber"}
+        style={{ marginTop: t.spacing.xxl }}
+      >
+        <AppText weight="semibold">Sensor Metrics Snapshot</AppText>
 
-      {/* Quick Controls */}
-      <AppText weight="semibold">Quick Controls</AppText>
-
-      <View style={s.controlsRow}>
-        <ToggleButton label="Pump" value={pumpOn} onToggle={onTogglePump} />
-        <View style={{ width: t.spacing.md }} />
-        <ToggleButton
-          label="Lights"
-          value={lightsOn}
-          onToggle={onToggleLights}
-        />
-      </View>
-
-      <View style={s.controlsRow}>
-        <ToggleButton
-          label="Left Valve"
-          value={leftValveOpen}
-          onToggle={onToggleLeftValve}
-        />
-        <View style={{ width: t.spacing.md }} />
-        <ToggleButton
-          label="Right Valve"
-          value={rightValveOpen}
-          onToggle={onToggleRightValve}
-        />
-      </View>
-
-      <Card style={{ marginTop: t.spacing.lg }}>
-        <AppText weight="semibold">Sensor Snapshot</AppText>
         <View style={s.grid}>
-          {terrariumStatusSnapshot.map((x) => (
-            <View key={x.label} style={s.tile}>
-              <AppText variant="muted">{x.label}</AppText>
+          {statusTiles.map((tile) => (
+            <View key={tile.label} style={s.tile}>
+              <AppText variant="muted">{tile.label}</AppText>
               <AppText weight="bold" style={s.value}>
-                {x.value}
+                {tile.value}
               </AppText>
-              <AppText variant="muted">{x.hint}</AppText>
+              <AppText variant="muted">{tile.hint}</AppText>
             </View>
           ))}
         </View>
       </Card>
+
+      <View style={s.divider} />
+
+      {/* Controls Status */}
+      <AppText weight="semibold">Controls Status</AppText>
+
+      <View style={s.controlsRow}>
+        <ControlStatusCard label="Pump" active={pumpOn} />
+        <View style={{ width: t.spacing.md }} />
+        <ControlStatusCard label="Lights" active={lightsOn} />
+      </View>
+
+      <View style={s.controlsRow}>
+        <ControlStatusCard label="Left Valve" active={leftValveOpen} />
+        <View style={{ width: t.spacing.md }} />
+        <ControlStatusCard label="Right Valve" active={rightValveOpen} />
+      </View>
     </Screen>
   );
 }
@@ -130,7 +123,7 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     divider: {
       height: 1,
       backgroundColor: t.colors.border,
-      marginVertical: t.spacing.lg,
+      marginVertical: t.spacing.xxl,
     },
     controlsRow: {
       flexDirection: "row",

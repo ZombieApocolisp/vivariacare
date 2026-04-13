@@ -1,4 +1,4 @@
-export type terrariumStatusSnapshot = {
+export type TerrariumStatusSnapshot = {
   temperatureF: number;
   humidityPct: number;
   substrateMoisturePct: number;

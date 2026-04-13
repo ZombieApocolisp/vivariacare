@@ -1,6 +1,6 @@
+import { startMockPolling } from "@features/terrarium/terrariumThunks";
 import DashboardScreen from "@screens/DashboardScreen";
 import { useAppDispatch, useAppSelector } from "@state/hooks";
-import { startMockPolling } from "@state/terrariumThunks";
 import React, { useEffect } from "react";
 
 export default function DashboardRoute() {

@@ -1,5 +1,11 @@
 import { RootState } from "@state/store";
 
+export const selectTerrariumStatus = (state: RootState) =>
+  state.terrarium.status;
+
+export const selectTerrariumControls = (state: RootState) =>
+  state.terrarium.controls;
+
 export const selectPumpOn = (state: RootState) =>
   state.terrarium.controls.pumpOn;
 
@@ -12,25 +18,29 @@ export const selectLeftValveOpen = (state: RootState) =>
 export const selectRightValveOpen = (state: RootState) =>
   state.terrarium.controls.rightValveOpen;
 
-export const selectTerrariumStatusSnapshot = (state: RootState) => [
-  {
-    label: "Temp",
-    value: `${state.terrarium.status.temperatureF}°F`,
-    hint: "Target 75-82",
-  },
-  {
-    label: "Humidity",
-    value: `${state.terrarium.status.humidityPct}%`,
-    hint: "Target 80-95",
-  },
-  {
-    label: "Reservoir",
-    value: `${state.terrarium.status.reservoirPct}`,
-    hint: "kPa",
-  },
-  {
-    label: "Substrate",
-    value: state.terrarium.status.substrateMoisturePct,
-    hint: "OK",
-  },
-];
+export const selectStatusTiles = (state: RootState) => {
+  const status = selectTerrariumStatus(state);
+
+  return [
+    {
+      label: "Temp",
+      value: `${status.temperatureF}°F`,
+      hint: "Target 75-82°F",
+    },
+    {
+      label: "Humidity",
+      value: `${status.humidityPct}%`,
+      hint: "Target 80-95%",
+    },
+    {
+      label: "Reservoir",
+      value: `${status.reservoirPct}%`,
+      hint: "Water level",
+    },
+    {
+      label: "Substrate",
+      value: `${status.substrateMoisturePct}%`,
+      hint: "Moisture level",
+    },
+  ];
+};

@@ -1,41 +1,27 @@
 import { AppText } from "@components/ui/AppText";
 import { useTheme } from "@theme/useTheme";
-import React, { memo, useCallback } from "react";
-import { Pressable, StyleSheet, ViewStyle } from "react-native";
+import React, { memo } from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
 
 type Props = {
   label: string;
-  value: boolean;
-  onPress: () => void;
+  active: boolean;
   style?: ViewStyle;
 };
 
-export const ToggleButton = memo(function ToggleButton({
+export const ControlStatusCard = memo(function ControlStatusCard({
   label,
-  value,
-  onPress,
+  active,
   style,
 }: Props) {
   const t = useTheme();
   const s = styles(t);
 
-  const handlePress = useCallback(() => {
-    onPress();
-  }, [onPress]);
-
   return (
-    <Pressable
-      onPress={handlePress}
-      style={({ pressed }) => [
-        s.base,
-        value ? s.on : s.off,
-        pressed && s.pressed,
-        style,
-      ]}
-    >
+    <View style={[s.base, active ? s.on : s.off, style]}>
       <AppText weight="semibold">{label}</AppText>
-      <AppText variant="muted">{value ? "ON" : "OFF"}</AppText>
-    </Pressable>
+      <AppText variant="muted">{active ? "ACTIVE" : "OFF"}</AppText>
+    </View>
   );
 });
 
@@ -57,9 +43,5 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     off: {
       backgroundColor: "rgba(255,255,255,0.04)",
       borderColor: t.colors.border,
-    },
-    pressed: {
-      opacity: 0.92,
-      transform: [{ scale: 0.995 }],
     },
   });

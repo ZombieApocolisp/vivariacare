@@ -1,5 +1,5 @@
+import terrariumReducer from "@features/terrarium/terrariumSlice";
 import { configureStore } from "@reduxjs/toolkit";
-import terrariumReducer from "@state/terrariumSlice";
 
 export const store = configureStore({
   reducer: {

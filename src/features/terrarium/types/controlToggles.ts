@@ -1,7 +1,6 @@
-export type controlToggles = {
+export type ControlToggles = {
   pumpOn: boolean;
   leftValveOpen: boolean;
   rightValveOpen: boolean;
   lightsOn: boolean;
-  updatedAt: number; // Timestamp (millisecond since epoch)
 };
