@@ -1,3 +1,5 @@
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { useTheme } from "@theme/useTheme";
 import React from "react";
 import { ScrollView, StyleSheet, View, ViewProps } from "react-native";
@@ -23,7 +25,15 @@ export function Screen({
       <SafeAreaView style={s.safe} edges={["left", "right"]}>
         <ScrollView
           style={s.root}
-          contentContainerStyle={[padded && s.padded, s.scrollContent, style]}
+          contentContainerStyle={[
+            padded && s.padded,
+            s.scrollContent,
+            style,
+            {
+              paddingTop: useHeaderHeight(),
+              paddingBottom: useBottomTabBarHeight(),
+            },
+          ]}
           showsVerticalScrollIndicator={false}
           {...props}
         >
@@ -35,7 +45,18 @@ export function Screen({
 
   return (
     <SafeAreaView style={s.safe}>
-      <View {...props} style={[s.root, padded && s.padded, style]}>
+      <View
+        {...props}
+        style={[
+          {
+            paddingTop: useHeaderHeight(),
+            paddingBottom: useBottomTabBarHeight(),
+          },
+          s.root,
+          padded && s.padded,
+          style,
+        ]}
+      >
         {children}
       </View>
     </SafeAreaView>
@@ -47,6 +68,8 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     safe: {
       flex: 1,
       backgroundColor: t.colors.bg0,
+      paddingTop: t.spacing.xl,
+      paddingBottom: t.spacing.xl,
     },
     root: {
       flex: 1,

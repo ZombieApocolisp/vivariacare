@@ -14,12 +14,15 @@ export default function TabsLayout() {
             style={StyleSheet.absoluteFill}
           />
         ),
+        headerTintColor: "white",
         tabBarStyle: {
           position: "absolute",
           backgroundColor: "transparent",
           borderTopWidth: 0,
           elevation: 0,
         },
+        tabBarActiveTintColor: "#2EF2FF",
+        tabBarInactiveTintColor: "white",
         tabBarBackground: () => (
           <BlurView
             tint="systemThickMaterialDark"

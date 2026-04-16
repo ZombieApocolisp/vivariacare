@@ -95,13 +95,13 @@ export default function DashboardScreen() {
 
       <View style={s.controlsRow}>
         <ControlStatusCard label="Pump" active={pumpOn} />
-        <View style={{ width: t.spacing.md }} />
+        <View style={{ width: t.spacing.xl }} />
         <ControlStatusCard label="Lights" active={lightsOn} />
       </View>
 
       <View style={s.controlsRow}>
         <ControlStatusCard label="Left Valve" active={leftValveOpen} />
-        <View style={{ width: t.spacing.md }} />
+        <View style={{ width: t.spacing.xl }} />
         <ControlStatusCard label="Right Valve" active={rightValveOpen} />
       </View>
     </Screen>
@@ -127,7 +127,7 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     },
     controlsRow: {
       flexDirection: "row",
-      marginTop: t.spacing.md,
+      marginTop: t.spacing.xl,
     },
     grid: {
       flexDirection: "row",
