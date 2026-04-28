@@ -136,8 +136,8 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       marginTop: t.spacing.md,
     },
     tile: {
-      flexBasis: "48%",
-      flexGrow: 1,
+      flexBasis: "47.5%",
+      flexGrow: 0,
       padding: t.spacing.md,
       borderRadius: t.radius.lg,
       backgroundColor: "rgba(0,0,0,0.03)",

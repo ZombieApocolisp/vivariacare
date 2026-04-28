@@ -33,14 +33,14 @@ export const selectStatusTiles = (state: RootState) => {
       hint: "Target 80-95%",
     },
     {
-      label: "Reservoir",
-      value: `${status.reservoirPct}%`,
-      hint: "Water level",
-    },
-    {
       label: "Substrate",
       value: `${status.substrateMoisturePct}%`,
       hint: "Moisture level",
+    },
+    {
+      label: "Reservoir",
+      value: `${status.reservoirPct}%`,
+      hint: "Water level",
     },
   ];
 };
