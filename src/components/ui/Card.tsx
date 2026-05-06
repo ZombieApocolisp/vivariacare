@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, View, ViewProps } from "react-native";
 
 type Props = ViewProps & {
-  glow?: "cyan" | "lime" | "violet" | "amber" | "none";
+  glow?: "lime" | "cyan" | "violet" | "amber" | "none";
 };
 
 export function Card({ glow = "none", style, ...props }: Props) {
@@ -11,9 +11,9 @@ export function Card({ glow = "none", style, ...props }: Props) {
   const s = styles(t);
 
   const glowStyle =
-    glow === "cyan"
+    glow === "lime"
       ? s.glowCyan
-      : glow === "lime"
+      : glow === "cyan"
         ? s.glowLime
         : glow === "violet"
           ? s.glowViolet
@@ -31,22 +31,22 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       borderRadius: t.radius.xl,
       padding: t.spacing.lg,
       borderWidth: 1,
-      borderColor: t.colors.border,
+      borderColor: t.colors.borderDefault,
     },
 
     // "Glow" is intentionally subtle (performance-friendly).
-    glowCyan: {
-      borderColor: t.colors.borderStrong,
-      shadowColor: t.colors.neonCyan,
-      shadowOpacity: 0.25,
-      shadowRadius: 14,
-      shadowOffset: { width: 0, height: 8 },
-      elevation: 6,
-    },
     glowLime: {
       borderColor: "rgba(92, 255, 154, 0.22)",
       shadowColor: t.colors.neonLime,
       shadowOpacity: 0.22,
+      shadowRadius: 14,
+      shadowOffset: { width: 0, height: 8 },
+      elevation: 6,
+    },
+    glowCyan: {
+      borderColor: "rgba(92, 255, 206, 0.25)",
+      shadowColor: t.colors.neonCyan,
+      shadowOpacity: 0.25,
       shadowRadius: 14,
       shadowOffset: { width: 0, height: 8 },
       elevation: 6,

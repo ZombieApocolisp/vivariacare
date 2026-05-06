@@ -38,8 +38,8 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     },
     on: {
       backgroundColor: t.colors.surface0,
-      borderColor: t.colors.borderStrong,
-      shadowColor: t.colors.neonCyan,
+      borderColor: t.colors.borderActive,
+      shadowColor: t.colors.neonLime,
       shadowOpacity: 0.25,
       shadowRadius: 14,
       shadowOffset: { width: 0, height: 8 },
@@ -47,6 +47,6 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     },
     off: {
       backgroundColor: "rgba(255,255,255,0.04)",
-      borderColor: t.colors.border,
+      borderColor: t.colors.borderDefault,
     },
   });

@@ -51,12 +51,12 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       justifyContent: "space-between",
     },
     on: {
-      backgroundColor: "rgba(46,242,255,0.10)",
-      borderColor: "rgba(46,242,255,0.30)",
+      backgroundColor: t.colors.surface0,
+      borderColor: t.colors.borderActive,
     },
     off: {
       backgroundColor: "rgba(255,255,255,0.04)",
-      borderColor: t.colors.border,
+      borderColor: t.colors.borderInactive,
     },
     pressed: {
       opacity: 0.92,

@@ -95,13 +95,11 @@ export default function DashboardScreen() {
 
       <View style={s.controlsRow}>
         <ControlStatusCard label="Pump" active={pumpOn} />
-        <View style={{ width: t.spacing.xl }} />
         <ControlStatusCard label="Lights" active={lightsOn} />
       </View>
 
       <View style={s.controlsRow}>
         <ControlStatusCard label="Left Valve" active={leftValveOpen} />
-        <View style={{ width: t.spacing.xl }} />
         <ControlStatusCard label="Right Valve" active={rightValveOpen} />
       </View>
     </Screen>
@@ -122,11 +120,12 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     },
     divider: {
       height: 1,
-      backgroundColor: t.colors.border,
+      backgroundColor: t.colors.borderDefault,
       marginVertical: t.spacing.xxl,
     },
     controlsRow: {
       flexDirection: "row",
+      gap: t.spacing.xl,
       marginTop: t.spacing.xl,
     },
     grid: {
@@ -142,7 +141,7 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       borderRadius: t.radius.lg,
       backgroundColor: "rgba(0,0,0,0.03)",
       borderWidth: 1,
-      borderColor: t.colors.border,
+      borderColor: t.colors.borderDefault,
     },
     value: {
       marginTop: 6,

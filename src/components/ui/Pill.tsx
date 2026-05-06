@@ -44,18 +44,18 @@ const styles = (t: ReturnType<typeof useTheme>) =>
     },
     neutral: {
       backgroundColor: "rgba(255,255,255,0.04)",
-      borderColor: t.colors.border,
+      borderColor: t.colors.borderInactive,
     },
     ok: {
       backgroundColor: "rgba(92,255,154,0.10)",
-      borderColor: "rgba(92,255,154,0.25)",
+      borderColor: t.colors.borderStrong,
     },
     warn: {
       backgroundColor: "rgba(228,184,103,0.10)",
-      borderColor: "rgba(228,184,103,0.25)",
+      borderColor: t.colors.borderWarn,
     },
     bad: {
       backgroundColor: "rgba(255,77,109,0.10)",
-      borderColor: "rgba(255,77,109,0.25)",
+      borderColor: t.colors.borderBad,
     },
   });

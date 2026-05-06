@@ -20,7 +20,7 @@ export default function TabsLayout() {
           />
         ),
         headerTintColor: "white",
-        tabBarActiveTintColor: "#2EF2FF",
+        tabBarActiveTintColor: "rgba(92, 255, 154, 0.5)",
         tabBarInactiveTintColor: "#ffffff80",
         tabBarAllowFontScaling: true,
         tabBarStyle: {
@@ -42,8 +42,8 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: "Dashboard",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome6 name="leaf" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="leaf" size={s.icon.fontSize} color={color} />
           ),
         }}
       />
@@ -51,8 +51,12 @@ export default function TabsLayout() {
         name="controls"
         options={{
           title: "Controls",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome6 name="toggle-off" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6
+              name="toggle-off"
+              size={s.icon.fontSize}
+              color={color}
+            />
           ),
         }}
       />
@@ -60,8 +64,12 @@ export default function TabsLayout() {
         name="schedules"
         options={{
           title: "Schedules",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome6 name="calendar-days" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6
+              name="calendar-days"
+              size={s.icon.fontSize}
+              color={color}
+            />
           ),
         }}
       />
@@ -69,8 +77,12 @@ export default function TabsLayout() {
         name="history"
         options={{
           title: "History",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome6 name="clock-rotate-left" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6
+              name="clock-rotate-left"
+              size={s.icon.fontSize}
+              color={color}
+            />
           ),
         }}
       />
@@ -78,8 +90,8 @@ export default function TabsLayout() {
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome6 name="gear" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="gear" size={s.icon.fontSize} color={color} />
           ),
         }}
       />
@@ -87,4 +99,9 @@ export default function TabsLayout() {
   );
 }
 
-const styles = (t: ReturnType<typeof useTheme>) => StyleSheet.create({});
+const styles = (t: ReturnType<typeof useTheme>) =>
+  StyleSheet.create({
+    icon: {
+      fontSize: 18,
+    },
+  });

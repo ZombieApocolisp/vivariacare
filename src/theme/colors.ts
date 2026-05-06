@@ -11,8 +11,8 @@ export const colors = {
   text2: "#7FA79A", // secondary
 
   // Accents (neon + nature)
-  neonCyan: "#2EF2FF",
   neonLime: "#5CFF9A",
+  neonCyan: "#2EF2FF",
   neonViolet: "#9B7CFF",
   amber: "#E4B867", // your brand highlight color
 
@@ -22,8 +22,12 @@ export const colors = {
   bad: "#FF4D6D",
 
   // Lines
-  border: "rgba(231, 255, 243, 0.12)",
-  borderStrong: "rgba(46, 242, 255, 0.22)",
+  borderDefault: "rgba(231, 255, 243, 0.12)",
+  borderStrong: "rgba(92, 255, 154, 0.25)",
+  borderInactive: "rgba(231,255,243,0.12)",
+  borderActive: "rgba(92, 255, 154, 0.25)",
+  borderWarn: "rgba(228,184,103,0.25)",
+  borderBad: "rgba(255,77,109,0.25)",
 
   // Overlays
   overlay: "rgba(0,0,0,0.35)",

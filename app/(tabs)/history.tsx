@@ -1,15 +1,6 @@
-import { Text, View } from "react-native";
+import HistoryScreen from "@screens/HistoryScreen";
+import React from "react";
 
-export default function History() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/(tabs)/history.tsx to edit this screen.</Text>
-    </View>
-  );
+export default function HistoryRoute() {
+  return <HistoryScreen />;
 }

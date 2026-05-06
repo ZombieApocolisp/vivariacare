@@ -1,15 +1,6 @@
-import { Text, View } from "react-native";
+import SettingsScreen from "@screens/SettingsScreen";
+import React from "react";
 
-export default function Settings() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/(tabs)/settings.tsx to edit this screen.</Text>
-    </View>
-  );
+export default function SettingsRoute() {
+  return <SettingsScreen />;
 }
