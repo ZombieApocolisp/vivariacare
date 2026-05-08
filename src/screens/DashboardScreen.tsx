@@ -53,7 +53,7 @@ export default function DashboardScreen() {
         glow={systemOk ? "cyan" : "amber"}
         style={{ marginTop: t.spacing.xxl }}
       >
-        <View style={s.cardTopRow}>
+        <View style={s.statusCard}>
           <View style={{ flex: 1 }}>
             <AppText weight="semibold">Current Mode</AppText>
             <AppText variant="muted">Auto (schedule + sensors)</AppText>
@@ -113,7 +113,7 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       alignItems: "flex-start",
       gap: t.spacing.md,
     },
-    cardTopRow: {
+    statusCard: {
       flexDirection: "row",
       alignItems: "center",
       gap: t.spacing.md,

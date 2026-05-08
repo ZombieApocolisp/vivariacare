@@ -34,16 +34,13 @@ export default function ControlsScreen() {
       </View>
 
       {/* Controls */}
-      <View style={s.controlsRow}>
-        <ToggleButton label="Pump" value={pumpOn} onPress={togglePumpControl} />
+      <View style={s.controlsColumn}>
         <ToggleButton
           label="Lights"
           value={lightsOn}
           onPress={toggleLightsControl}
         />
-      </View>
-
-      <View style={s.controlsRow}>
+        <ToggleButton label="Pump" value={pumpOn} onPress={togglePumpControl} />
         <ToggleButton
           label="Left Valve"
           value={leftValveOpen}
@@ -67,6 +64,11 @@ const styles = (t: ReturnType<typeof useTheme>) =>
       gap: t.spacing.md,
     },
     controlsRow: {
+      flexDirection: "row",
+      gap: t.spacing.xl,
+      marginTop: t.spacing.xl,
+    },
+    controlsColumn: {
       flexDirection: "column",
       gap: t.spacing.xl,
       marginTop: t.spacing.xl,
