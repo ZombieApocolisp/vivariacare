@@ -9,7 +9,11 @@ export default function Login() {
         alignItems: "center",
       }}
     >
-      <Text>Login: Edit app/(auth)/login.tsx to edit this screen.</Text>
+      <Text>
+        Login: Edit app/(auth)/login.tsx to edit this screen. Will be looking
+        into third-party services like Clerk or AWS Cognito for authentication
+        solutions.
+      </Text>
     </View>
   );
 }
