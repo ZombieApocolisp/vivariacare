@@ -13,7 +13,7 @@ export default function SchedulesScreen() {
         <AppText>
           This is the starting template for this screen. Need to figure out
           where to find a calendar component or how to create one myself. Better
-          yet, how to export the schedule to a user's Google Calendars app.
+          yet, how to export the schedule to a user&apos;s Google Calendars app.
         </AppText>
       </View>
     </Screen>
