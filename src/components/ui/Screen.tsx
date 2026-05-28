@@ -19,6 +19,8 @@ export function Screen({
 }: Props) {
   const t = useTheme();
   const s = styles(t);
+  const headerHeight = useHeaderHeight();
+  const bottomTabBarHeight = useBottomTabBarHeight();
 
   if (scrollable) {
     return (
@@ -30,8 +32,8 @@ export function Screen({
             s.scrollContent,
             style,
             {
-              paddingTop: useHeaderHeight(),
-              paddingBottom: useBottomTabBarHeight(),
+              paddingTop: headerHeight,
+              paddingBottom: bottomTabBarHeight,
             },
           ]}
           showsVerticalScrollIndicator={false}
@@ -49,8 +51,8 @@ export function Screen({
         {...props}
         style={[
           {
-            paddingTop: useHeaderHeight(),
-            paddingBottom: useBottomTabBarHeight(),
+            paddingTop: headerHeight,
+            paddingBottom: bottomTabBarHeight,
           },
           s.root,
           padded && s.padded,

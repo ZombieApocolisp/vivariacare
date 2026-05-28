@@ -1,11 +1,10 @@
 import { AppText } from "@components/ui/AppText";
 import { Screen } from "@components/ui/Screen";
-import { useTheme } from "@theme/useTheme";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 export default function SchedulesScreen() {
-  const t = useTheme();
-  const s = styles(t);
+  // const t = useTheme();
+  // const s = styles(t);
 
   return (
     <Screen scrollable>
@@ -20,4 +19,4 @@ export default function SchedulesScreen() {
   );
 }
 
-const styles = (t: ReturnType<typeof useTheme>) => StyleSheet.create({});
+// const styles = (t: ReturnType<typeof useTheme>) => StyleSheet.create({});
